@@ -1,8 +1,15 @@
-import { ThemeProvider } from "styled-components";
-import Theme from "styles/theme";
+import Main from "pages/Main";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  return <ThemeProvider theme={Theme}>app</ThemeProvider>;
-}
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;

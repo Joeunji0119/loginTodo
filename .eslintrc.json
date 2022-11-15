@@ -50,7 +50,6 @@
     "@typescript-eslint/no-explicit-any": 0,
     "no-plusplus": 0,
     "prefer-const": 0,
-    "no-console": ["error", { "allow": ["error"] }],
     "curly": "error"
   }
 }
