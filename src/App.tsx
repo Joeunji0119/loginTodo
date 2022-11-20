@@ -1,12 +1,12 @@
-import Main from "pages/Main";
-import React from "react";
+import Auth from "pages/auth/Auth";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );

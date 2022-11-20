@@ -1,7 +1,7 @@
 // my-theme.ts
-import { DefaultTheme } from "styled-components";
+import { Theme } from "@emotion/react";
 
-const Theme: DefaultTheme = {
+const theme: Theme = {
   colors: {
     black: "#000000",
     grey: "#D9D9D9",
@@ -9,4 +9,4 @@ const Theme: DefaultTheme = {
   },
 };
 
-export default Theme;
+export default theme;

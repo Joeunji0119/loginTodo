@@ -1,19 +1,19 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+/* eslint-disable import/prefer-default-export */
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
-const GlobalStyle = createGlobalStyle`
-  ${reset}
+export const global = css`
   * {
     box-sizing: border-box;
   }
   a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
   }
   li {
-  list-style: none;
+    list-style: none;
   }
-  button{
+  button {
     background: none;
     border: none;
     padding: 0;
@@ -22,5 +22,3 @@ const GlobalStyle = createGlobalStyle`
     outline: inherit;
   }
 `;
-
-export default GlobalStyle;
