@@ -1,9 +1,14 @@
-import TodoPage from "components/TodoPage";
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import Header from "components/header/Header";
+import TodoPage from "components/todos/TodoPage";
 
 const Todo = () => {
-  return <TodoPage />;
+  return (
+    <>
+      <Header />
+      <TodoPage />
+    </>
+  );
 };
 
 export default Todo;

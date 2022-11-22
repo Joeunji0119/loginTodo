@@ -23,7 +23,7 @@ export const Logo = styled.div`
 
 export const LoginContainer = styled.div`
   width: 400px;
-  min-height: 200px;
+  height: 450px;
   border-radius: 17px;
 `;
 
@@ -31,10 +31,14 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  max-height: 450px;
   padding: 20px;
   background-color: white;
   box-shadow: 2px 2px 5px 2px #dadce0;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const LoginTitle = styled.div`
   height: 50px;
@@ -129,12 +133,69 @@ export const GotoLoginBtn = styled.div`
   margin-top: 15px;
 `;
 
-// Todo Style
-
-export const TodoInput = styled.input``;
-
-export const Test = styled.div`
-  width: 200px;
-  height: 1000px;
-  background: red;
+// TodoPage Style
+export const TodoInput = styled.input`
+  height: 30px;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid black;
+  &:focus {
+    outline: none;
+  }
 `;
+
+export const TodoDiv = styled.div`
+  min-height: 100px;
+  padding-top: 50px;
+`;
+
+// Todos Style
+
+export const TodosLayout = styled.div`
+  height: 30px;
+  display: flex;
+  align-items: center;
+`;
+
+export const CheckBox = styled.input`
+  width: 27px;
+`;
+
+export const TodoCreateButton = styled.button`
+  width: 40px;
+  border-radius: 5px;
+  background: #f0f2f5;
+  font-size: 14px;
+`;
+
+export const TodoCreatContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const TodoText = styled.input`
+  height: 25px;
+  width: 250px;
+  margin-right: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const ModifyButton = styled.button`
+  width: 27px;
+  font-size: 13px;
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 2px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #f0f2f5;
+  }
+`;
+
+export const DeleteButton = styled(ModifyButton)``;
