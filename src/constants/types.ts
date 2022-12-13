@@ -12,6 +12,11 @@ export interface TodoListData {
   isCheck: boolean;
 }
 
+<<<<<<< HEAD
+=======
+// export type TodoListDatas = TodoListData[];
+
+>>>>>>> 2941964 (feat : auth Error 모달 추가)
 export interface CreateTodo {
   content: string;
 }

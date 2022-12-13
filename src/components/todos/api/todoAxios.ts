@@ -40,3 +40,21 @@ export const DeleteTodoAxios = async (targetId: number) => {
 export const PatchCheckBoxAxios = async (targetId: number) => {
   await axios.patch(`${process.env.REACT_APP_BASE_URL}/todo/check/${targetId}`, {}, headers);
 };
+
+export const PatchTodoAxios = async (datas: CreateTodo, targetId: number) => {
+  await axios.patch(`http://localhost:4000/todo/${targetId}`, datas, headers);
+};
+
+export const DeleteTodoAxios = async (targetId: number) => {
+  await axios.delete(`http://localhost:4000/todo/${targetId}`, headers);
+};
+
+export const PatchCheckBoxAxios = async (targetId: number) => {
+  await axios.patch(`http://localhost:4000/todo/check/${targetId}`, {}, headers);
+};
+
+// export const Test = () => {
+//   const res = axios.get("http://localhost:4000/user", headers);
+
+//   return res;
+// };

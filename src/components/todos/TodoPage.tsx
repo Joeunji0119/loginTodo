@@ -1,8 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { TodoListData } from "constants/types";

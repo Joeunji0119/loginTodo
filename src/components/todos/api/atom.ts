@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/naming-convention */
 import axios from "axios";
-import { GetTodo } from "constants/types/types";
+import { GetTodo } from "constants/types";
 import { atom, selector } from "recoil";
 
 const access_token = localStorage.getItem("access_token");
