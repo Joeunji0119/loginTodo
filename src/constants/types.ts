@@ -12,8 +12,17 @@ export interface TodoListData {
   isCheck: boolean;
 }
 
-export type TodoListDatas = TodoListData[];
+// export type TodoListDatas = TodoListData[];
 
 export interface CreateTodo {
   content: string;
+}
+
+export interface DataProps {
+  name: string;
+  gender: string;
+  email: string;
+  password: string;
+  birth: string;
+  file: (string | Blob)[];
 }

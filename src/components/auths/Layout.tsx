@@ -1,10 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-alert */
 /* eslint-disable no-sequences */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 
-import React from "react";
-import { useForm } from "react-hook-form";
 import * as S from "../common/Style";
 import Authform from "./auth/AuthForm";
 import useAuth from "./hooks/useAuth";

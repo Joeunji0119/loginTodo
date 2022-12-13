@@ -1,85 +1,96 @@
-import React from "react";
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-useless-escape */
+/* eslint-disable import/no-named-as-default */
 
+import axios from "axios";
+import { useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import * as S from "../../common/Style";
+import { AuthSignInAxios, AuthSignUpAxios } from "../api/authAxios";
+import DropBox from "../dropBox/DropBox";
 import useAuth from "../hooks/useAuth";
+import Errormodal from "../modal/Errormodal";
+import BirthInput from "./input/BirthInput";
+import EmailInput from "./input/EmailInput";
+import ImageInput from "./input/ImageInput";
+import NameInput from "./input/NameInput";
+import PasswordInput from "./input/PasswordInput";
 
 const Authform = () => {
-  const { PageStatus, toogle, onSubmit, image, uploadImage, navi, statusButton, register, errors } =
-    useAuth();
+  const [errorModal, setErrorModal] = useState(false);
+  const [serverErrorMessage, setServerErrorMessage] = useState("");
+  const { PageStatus, toogle, setToogle, navi, statusButton } = useAuth();
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (!toogle) {
+      await AuthSignUpAxios(data)
+        .then((res) => {
+          if (res.data.status === 201) {
+            setServerErrorMessage("201");
+            setErrorModal((pre) => !pre);
+            setToogle((pre: boolean) => !pre);
+          }
+        })
+        .catch((err) => {
+          const { message } = err.response.data;
+          setServerErrorMessage(message);
+          setErrorModal((pre) => !pre);
+        });
+    }
+
+    if (toogle) {
+      AuthSignInAxios(data)
+        .then((res) => {
+          if (res.data.status === 200) {
+            setServerErrorMessage("200");
+            setErrorModal((pre) => !pre);
+            localStorage.setItem("access_token", res.data.accessToken);
+            setTimeout(() => {
+              navigate("/todo");
+            }, 3000);
+          }
+        })
+        .catch((err) => {
+          const { message } = err.response.data;
+          setServerErrorMessage(message);
+          setErrorModal(true);
+        });
+    }
+  };
+
+  console.log(errorModal);
+  // console.log(serverErrorMessage);
 
   return (
-    <S.FormContainer onSubmit={onSubmit}>
-      {toogle ? (
-        " "
-      ) : (
-        <S.ImageContainer>
-          <S.ImageShowing src={image} />
-          <S.ImageSearchButtonForShow>
-            사진 선택
-            <S.ImageSearchButton
-              type="file"
-              accept="image/*"
-              {...register("file", {
-                onChange: (e) => {
-                  uploadImage(e);
-                },
-              })}
-            />
-          </S.ImageSearchButtonForShow>
-        </S.ImageContainer>
-      )}
-      {errors.name && <div className="error"> 이름을 입력하세요 </div>}
-      {toogle ? (
-        " "
-      ) : (
-        <S.NameInput
-          {...register("name", {
-            required: true,
-          })}
-          placeholder=" 이름을 입력하세요"
+    <>
+      <S.FormContainer onSubmit={handleSubmit(onSubmit)}>
+        {!toogle && <ImageInput register={register} errors={errors} />}
+        {!toogle && <NameInput register={register} errors={errors} />}
+        {!toogle && <BirthInput register={register} />}
+        {!toogle && <DropBox register={register} />}
+
+        <EmailInput register={register} errors={errors} />
+        <PasswordInput register={register} errors={errors} />
+
+        <S.SubmitButton>{PageStatus}</S.SubmitButton>
+        <S.GotoLoginBtn {...navi}>{statusButton}</S.GotoLoginBtn>
+      </S.FormContainer>
+      {errorModal && (
+        <Errormodal
+          serverErrorMessage={serverErrorMessage}
+          errorModal={errorModal}
+          setErrorModal={setErrorModal}
         />
       )}
-      {errors.date && <div className="error"> 생년월일을 입력하세요 </div>}
-      {toogle
-        ? " "
-        : (
-            <S.Birth
-              type="date"
-              {...register("birth", {
-                value: "2022-01-01",
-              })}
-              placeholder=" 생년월일"
-            />
-          ) && (
-            <S.Gender>
-              <S.Female>
-                <option defaultValue="" {...register("gender")}>
-                  남성
-                </option>
-                <option value="male">남성</option>
-                <option value="female">여성</option>
-                <option value="female">기타</option>
-              </S.Female>
-            </S.Gender>
-          )}
-      {errors.email && <div className="error"> 이메일을 입력하세요 </div>}
-      <S.IdInput
-        {...register("email", {
-          required: true,
-        })}
-        placeholder=" 이메일을 입력하세요"
-      />
-      {errors.password && <div className="error"> 비밀번호를 입력하세요 </div>}
-      <S.PassWordInput
-        type="password"
-        {...register("password", {
-          required: true,
-        })}
-        placeholder=" 비밀번호를 입력하세요"
-      />
-      <S.SubmitButton>{PageStatus}</S.SubmitButton>
-      <S.GotoLoginBtn {...navi}>{statusButton}</S.GotoLoginBtn>
-    </S.FormContainer>
+    </>
   );
 };
 
