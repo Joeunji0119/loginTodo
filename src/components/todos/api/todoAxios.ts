@@ -12,28 +12,31 @@ const headers = {
 };
 
 export const getDataAxios = async () => {
-  const res = await axios.get("http://localhost:4000/todo", headers);
+  const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/todo`, headers);
+  return res;
+};
+
+export const getUserDataAxios = async () => {
+  const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user`, headers);
   return res;
 };
 
 export const CreatTodoAxios = async (datas: CreateTodo) => {
-  await axios.post("http://localhost:4000/todo/create", datas, headers);
+  await axios.post(`${process.env.REACT_APP_BASE_URL}/todo/create`, datas, headers);
 };
 
-export const PatchTodoAxios = async (datas: CreateTodo, targetId: number) => {
-  await axios.patch(`http://localhost:4000/todo/${targetId}`, datas, headers);
+export const PatchTodoAxios = async (data: any) => {
+  await axios.patch(
+    `${process.env.REACT_APP_BASE_URL}/todo/${data.id}`,
+    { content: data.content },
+    headers
+  );
 };
 
 export const DeleteTodoAxios = async (targetId: number) => {
-  await axios.delete(`http://localhost:4000/todo/${targetId}`, headers);
+  await axios.delete(`${process.env.REACT_APP_BASE_URL}/todo/${targetId}`, headers);
 };
 
 export const PatchCheckBoxAxios = async (targetId: number) => {
-  await axios.patch(`http://localhost:4000/todo/check/${targetId}`, {}, headers);
+  await axios.patch(`${process.env.REACT_APP_BASE_URL}/todo/check/${targetId}`, {}, headers);
 };
-
-// export const Test = () => {
-//   const res = axios.get("http://localhost:4000/user", headers);
-
-//   return res;
-// };

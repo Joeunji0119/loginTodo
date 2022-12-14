@@ -12,8 +12,6 @@ export interface TodoListData {
   isCheck: boolean;
 }
 
-// export type TodoListDatas = TodoListData[];
-
 export interface CreateTodo {
   content: string;
 }

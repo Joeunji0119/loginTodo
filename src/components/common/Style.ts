@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 
 export const BackgroundColor = styled.div`
   background-color: #f0f2f5;
@@ -155,8 +154,15 @@ export const TodoInput = styled.input`
 `;
 
 export const TodoDiv = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
   min-height: 100px;
-  padding-top: 50px;
+  margin-top: 50px;
+  overflow-y: scroll;
+  max-height: 450px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 // Todos Style
@@ -189,6 +195,7 @@ export const TodoText = styled.input`
   margin-right: 5px;
   border: none;
   border-bottom: 1px solid black;
+
   &:focus {
     outline: none;
   }

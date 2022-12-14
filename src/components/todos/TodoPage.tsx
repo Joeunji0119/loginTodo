@@ -13,18 +13,11 @@ import {
   CreatTodoAxios,
   DeleteTodoAxios,
   PatchCheckBoxAxios,
-  // PatchTodoAxios,
+  PatchTodoAxios,
 } from "./api/todoAxios";
 import Todos from "./Todos";
 
 const TodoPage = () => {
-  const access_token = localStorage.getItem("access_token");
-  const headers = {
-    headers: {
-      "Content-Type": `application/json`,
-      Authorization: `Bearer ${access_token}`,
-    },
-  };
   const [todoInput, setTodoInput] = useState("");
   const [modifyStatus, setModifyStatus] = useState(false);
 
@@ -45,10 +38,14 @@ const TodoPage = () => {
     onSuccess: async () => queryClient.invalidateQueries(["getTodoListDatas"]),
   });
 
-  // const patchTodoMutation = useMutation({
-  //   mutationFn: PatchTodoAxios,
-  //   onSuccess: async () => queryClient.invalidateQueries(["getTodoListDatas"]),
-  // });
+  const patchTodoMutation = useMutation({
+    mutationFn: PatchTodoAxios,
+    onSuccess: async () => queryClient.invalidateQueries(["getTodoListDatas"]),
+  });
+
+  const modifyTodo = (data: any) => {
+    patchTodoMutation.mutate(data);
+  };
 
   const deleteTodo = async (checkedId: number) => {
     deleteTodoMutation.mutate(checkedId);
@@ -64,34 +61,15 @@ const TodoPage = () => {
     handleCheckBoxMutation.mutate(checkedId);
   };
 
-  // const patchCheckBox = useMutation(PatchCheckBoxAxios);
-
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoInput(e.target.value);
   };
 
-  // const modifyTodo = (datas, targetId: number) => {
-  // patchTodoMutation.mutate(targetId);
-  // };
-
-  const {
-    data,
-    // ,is÷Loading, isError
-  } = GetTodoQuery();
-
-  const modifyInputValue = (e: any, checkedId: number) => {
-    data?.data.todoList.map(({ id, content, createAt, updateAt, isCheck }: TodoListData) => {
-      if (id === checkedId) {
-        content = e.target.value;
-      }
-      return { id, content, createAt, updateAt, isCheck };
-    });
-  };
+  const { data } = GetTodoQuery();
 
   return (
     <S.BackgroundColor>
       <S.AuthLayout>
-        å<S.Logo>TODO-LIST</S.Logo>
         <S.LoginContainer>
           <S.LoginTitle> Todo-List</S.LoginTitle>
           <S.FormContainer>
@@ -110,12 +88,10 @@ const TodoPage = () => {
                     key={todo?.id}
                     todo={todo}
                     deleteTodo={deleteTodo}
-                    modifyInputValue={modifyInputValue}
-                    // handleModify={handleModify}
                     modifyStatus={modifyStatus}
                     setModifyStatus={setModifyStatus}
                     handleCheckBox={handleCheckBox}
-                    // modifyTodo={modifyTodo}
+                    modifyTodo={modifyTodo}
                   />
                 );
               })}

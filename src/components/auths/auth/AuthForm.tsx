@@ -66,9 +66,6 @@ const Authform = () => {
     }
   };
 
-  console.log(errorModal);
-  // console.log(serverErrorMessage);
-
   return (
     <>
       <S.FormContainer onSubmit={handleSubmit(onSubmit)}>

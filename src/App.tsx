@@ -1,5 +1,5 @@
-import Todo from "components/Todo";
-import Auth from "pages/auth/Auth";
+import Auth from "pages/Auth";
+import Todo from "pages/Todo";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
