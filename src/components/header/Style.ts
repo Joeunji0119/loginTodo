@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import styled from "@emotion/styled";
 
-export const Layout = styled.div`
+export const Layout = styled.header`
   height: 50px;
   width: 100vw;
   position: sticky;
