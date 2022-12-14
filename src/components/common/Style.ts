@@ -21,7 +21,7 @@ export const Logo = styled.div`
   font-weight: 800;
 `;
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.main`
   width: 400px;
   border-radius: 17px;
 `;
