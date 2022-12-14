@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import styled from "@emotion/styled";
-import theme from "styles/theme";
 
 export const Layout = styled.header`
   height: 50px;
