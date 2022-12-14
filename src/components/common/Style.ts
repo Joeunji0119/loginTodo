@@ -154,7 +154,6 @@ export const TodoInput = styled.input`
 `;
 
 export const TodoDiv = styled.div`
-<<<<<<< HEAD
   display: flex;
   flex-direction: column-reverse;
   min-height: 100px;
@@ -164,10 +163,6 @@ export const TodoDiv = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-=======
-  min-height: 100px;
-  padding-top: 50px;
->>>>>>> 2941964 (feat : auth Error 모달 추가)
 `;
 
 // Todos Style
@@ -200,7 +195,7 @@ export const TodoText = styled.input`
   margin-right: 5px;
   border: none;
   border-bottom: 1px solid black;
-  <<<<<<< HEAD =======>>>>>>>2941964 (feat : auth Error 모달 추가) &:focus {
+  &:focus {
     outline: none;
   }
 `;

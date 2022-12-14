@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable import/prefer-default-export */
 import { useQuery } from "@tanstack/react-query";
-import { getDataAxios, 
-  // getUserDataAxios 
-} from "./todoAxios";
+import { getDataAxios, getUserDataAxios } from "./todoAxios";
 
 export const GetTodoQuery = () => {
   return useQuery({
@@ -15,6 +13,6 @@ export const GetTodoQuery = () => {
 export const GetTodoUserQuery = () => {
   return useQuery({
     queryKey: ["getTodoUserData"],
-    // queryFn: getUserDataAxios,
+    queryFn: getUserDataAxios,
   });
 };
