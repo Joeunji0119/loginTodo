@@ -6,13 +6,13 @@ import { CreateTodo } from "constants/types";
 const access_token = localStorage.getItem("access_token");
 const headers = {
   headers: {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${access_token}`,
   },
 };
 
 export const getDataAxios = async () => {
   const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/todo`, headers);
+
   return res;
 };
 
