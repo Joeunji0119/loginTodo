@@ -21,7 +21,7 @@ const Header = () => {
         </S.UserImgLabel>
         <S.HeaderNameLabel>
           <S.Name>{data?.data?.name}</S.Name>
-          <S.NameToHiText>님, 환영합니다 🥰 </S.NameToHiText>
+          <S.NameToHiText>님, 환영합니다 🌈 </S.NameToHiText>
         </S.HeaderNameLabel>
       </S.HeaderUserInfo>
       <S.Logout onClick={toLogout}>로그아웃</S.Logout>
