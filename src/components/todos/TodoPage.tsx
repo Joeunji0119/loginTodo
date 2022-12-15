@@ -6,7 +6,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { TodoListData } from "constants/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "../common/Style";
 import { GetTodoQuery } from "./api/handleQueryTodos";
 import {
@@ -102,5 +102,4 @@ const TodoPage = () => {
     </S.BackgroundColor>
   );
 };
-
 export default TodoPage;

@@ -1,7 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-alert */
 /* eslint-disable no-sequences */
-
 import * as S from "../common/Style";
 import Authform from "./auth/AuthForm";
 import useAuth from "./hooks/useAuth";

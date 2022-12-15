@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from "@emotion/styled";
+import theme from "styles/theme";
 
 export const Layout = styled.header`
   height: 50px;
@@ -55,4 +56,12 @@ export const Name = styled.div`
 export const Together = styled.div`
   font-size: 20px;
   font-weight: 500;
+`;
+
+export const Logout = styled.button`
+  width: 45px;
+  height: 27px;
+  font-size: 10px;
+  border-radius: 7px;
+  background: ${(css) => css.theme.buttonColor};
 `;

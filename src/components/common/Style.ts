@@ -195,7 +195,6 @@ export const TodoText = styled.input`
   margin-right: 5px;
   border: none;
   border-bottom: 1px solid black;
-
   &:focus {
     outline: none;
   }

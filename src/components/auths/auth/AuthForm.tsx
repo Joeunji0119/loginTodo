@@ -34,7 +34,7 @@ const Authform = () => {
       await AuthSignUpAxios(data)
         .then((res) => {
           if (res.data.status === 201) {
-            setServerErrorMessage("201");
+            setServerErrorMessage(res.data.status);
             setErrorModal((pre) => !pre);
             setToogle((pre: boolean) => !pre);
           }
@@ -50,12 +50,10 @@ const Authform = () => {
       AuthSignInAxios(data)
         .then((res) => {
           if (res.data.status === 200) {
-            setServerErrorMessage("200");
+            setServerErrorMessage(res.data.status);
             setErrorModal((pre) => !pre);
             localStorage.setItem("access_token", res.data.accessToken);
-            setTimeout(() => {
-              navigate("/todo");
-            }, 3000);
+            navigate("/todo");
           }
         })
         .catch((err) => {
@@ -85,6 +83,7 @@ const Authform = () => {
           serverErrorMessage={serverErrorMessage}
           errorModal={errorModal}
           setErrorModal={setErrorModal}
+          register={register}
         />
       )}
     </>
