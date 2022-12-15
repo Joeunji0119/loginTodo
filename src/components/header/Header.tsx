@@ -15,7 +15,7 @@ const Header = () => {
     <S.Layout>
       <S.Logo>TODOLIST</S.Logo>
       <S.Together> 📆 Day {data?.data?.together} </S.Together>
-      <S.HeaderUserInfo>÷
+      <S.HeaderUserInfo>
         <S.UserImgLabel>
           <S.UserImg src={data?.data.imgUrl} />
         </S.UserImgLabel>
