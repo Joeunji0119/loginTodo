@@ -145,7 +145,7 @@ dist
 .ionide
 # Support for Project snippet scope
 .vscode/*.code-snippets
-# Ignore code-workspaces
+# Ignore code-workspacesㄴㄴ
 *.code-workspace
 coverage/
 .eslintcache
