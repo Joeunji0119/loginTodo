@@ -56,10 +56,6 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
-<<<<<<< HEAD
-=======
-    "@types/styled-components": "^5.1.26",
->>>>>>> c6b05cc (feat : conflict 해결)
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "eslint": "^8.26.0",
