@@ -1,12 +1,7 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-named-as-default */
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { TodoListData } from "constants/types";
-import { useEffect, useState } from "react";
+import { ModifyProps, TodoListData } from "constants/types";
+import { useState } from "react";
 import * as S from "../common/Style";
 import { GetTodoQuery } from "./api/handleQueryTodos";
 import {
@@ -17,7 +12,7 @@ import {
 } from "./api/todoAxios";
 import Todos from "./Todos";
 
-const TodoPage = () => {
+const TodoList = () => {
   const [todoInput, setTodoInput] = useState("");
   const [modifyStatus, setModifyStatus] = useState(false);
 
@@ -43,7 +38,7 @@ const TodoPage = () => {
     onSuccess: async () => queryClient.invalidateQueries(["getTodoListDatas"]),
   });
 
-  const modifyTodo = (data: any) => {
+  const modifyTodo = (data: ModifyProps) => {
     patchTodoMutation.mutate(data);
   };
 
@@ -82,7 +77,7 @@ const TodoPage = () => {
               <S.TodoCreateButton onClick={(e) => createTodo(e)}>입력</S.TodoCreateButton>
             </S.TodoCreatContainer>
             <S.TodoDiv>
-              {data?.data?.todoList.map((todo: any) => {
+              {data?.data?.todoList.map((todo: TodoListData) => {
                 return (
                   <Todos
                     key={todo?.id}
@@ -102,4 +97,4 @@ const TodoPage = () => {
     </S.BackgroundColor>
   );
 };
-export default TodoPage;
+export default TodoList;

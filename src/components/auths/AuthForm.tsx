@@ -1,25 +1,24 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-useless-escape */
 /* eslint-disable import/no-named-as-default */
-
-import axios from "axios";
+import { FormValues } from "constants/types";
 import { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import * as S from "../../common/Style";
-import { AuthSignInAxios, AuthSignUpAxios } from "../api/authAxios";
-import DropBox from "../dropBox/DropBox";
-import useAuth from "../hooks/useAuth";
-import Errormodal from "../modal/Errormodal";
-import BirthInput from "./input/BirthInput";
-import EmailInput from "./input/EmailInput";
-import ImageInput from "./input/ImageInput";
-import NameInput from "./input/NameInput";
-import PasswordInput from "./input/PasswordInput";
+import * as S from "../common/Style";
+import { AuthSignInAxios, AuthSignUpAxios } from "./api/authAxios";
+import DropBox from "./authform/input/dropBox/DropBox";
+import useAuth from "./hooks/useAuth";
+import Errormodal from "./modal/Errormodal";
+import BirthInput from "./authform/input/BirthInput";
+import EmailInput from "./authform/input/EmailInput";
+import ImageInput from "./authform/input/ImageInput";
+import NameInput from "./authform/input/NameInput";
+import PasswordInput from "./authform/input/PasswordInput";
 
 const Authform = () => {
   const [errorModal, setErrorModal] = useState(false);
-  const [serverErrorMessage, setServerErrorMessage] = useState("");
+  const [serverErrorMessage, setServerErrorMessage] = useState<number | string>();
   const { PageStatus, toogle, setToogle, navi, statusButton } = useAuth();
   const navigate = useNavigate();
 
@@ -27,16 +26,16 @@ const Authform = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     if (!toogle) {
-      await AuthSignUpAxios(data)
+      return AuthSignUpAxios(data)
         .then((res) => {
           if (res.data.status === 201) {
             setServerErrorMessage(res.data.status);
             setErrorModal((pre) => !pre);
-            setToogle((pre: boolean) => !pre);
+            setToogle((pre) => !pre);
           }
         })
         .catch((err) => {
@@ -47,7 +46,7 @@ const Authform = () => {
     }
 
     if (toogle) {
-      AuthSignInAxios(data)
+      return AuthSignInAxios(data)
         .then((res) => {
           if (res.data.status === 200) {
             setServerErrorMessage(res.data.status);
@@ -79,12 +78,7 @@ const Authform = () => {
         <S.GotoLoginBtn {...navi}>{statusButton}</S.GotoLoginBtn>
       </S.FormContainer>
       {errorModal && (
-        <Errormodal
-          serverErrorMessage={serverErrorMessage}
-          errorModal={errorModal}
-          setErrorModal={setErrorModal}
-          register={register}
-        />
+        <Errormodal serverErrorMessage={serverErrorMessage} setErrorModal={setErrorModal} />
       )}
     </>
   );

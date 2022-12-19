@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
 import { ERROR_MESSAGE } from "constants/authErrors";
-import React from "react";
+import { RegisterErrorsProps } from "constants/types";
 import * as S from "../../../common/Style";
 
-const EmailInput = ({ register, errors }: any) => {
+const EmailInput = ({ register, errors }: RegisterErrorsProps) => {
   return (
     <>
       {errors.email && <S.ErrorMessage> {errors.email?.message} </S.ErrorMessage>}

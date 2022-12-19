@@ -1,7 +1,9 @@
 import { ERROR_MESSAGE } from "constants/authErrors";
+import { RegisterErrorsProps } from "constants/types";
+
 import * as S from "../../../common/Style";
 
-const NameInput = ({ register, errors }: any) => {
+const NameInput = ({ register, errors }: RegisterErrorsProps) => {
   return (
     <>
       {errors.name && <S.ErrorMessage> {errors.name?.message} </S.ErrorMessage>}

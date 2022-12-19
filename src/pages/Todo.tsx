@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import Header from "components/header/Header";
-import TodoPage from "components/todos/TodoPage";
+import TodoList from "components/todos/TodoList";
 
 const Todo = () => {
   return (
     <>
       <Header />
-      <TodoPage />
+      <TodoList />
     </>
   );
 };

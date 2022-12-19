@@ -1,10 +1,4 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/react";
-import styled from "@emotion/styled";
-
+import { TodosProps } from "constants/types";
 import { useRef } from "react";
 import * as S from "../common/Style";
 
@@ -15,54 +9,11 @@ const Todos = ({
   setModifyStatus,
   handleCheckBox,
   modifyTodo,
-}: any) => {
+}: TodosProps) => {
   const modifyButtonText = modifyStatus ? "제출" : "수정";
   const deleteButtonText = modifyStatus ? "취소" : "삭제";
-  const ref = useRef();
+  const ref = useRef<HTMLInputElement | string>("");
 
-  const inputProps = !modifyStatus
-    ? { readOnly: true }
-    : {
-        onChange: (e: any) => {
-          ref.current = e.target.value;
-        },
-      };
-
-  const modifyProps = !modifyStatus
-    ? {
-        onClick: (e: any) => {
-          e.preventDefault();
-          isChecked
-            ? // eslint-disable-next-line no-alert
-              alert("체크된 항목은 수정이 불가능합니다 🥲")
-            : setModifyStatus((pre: boolean) => !pre);
-        },
-      }
-    : {
-        onClick: (e: any) => {
-          e.preventDefault();
-          const data = {
-            id: todo.id,
-            content: ref.current,
-          };
-          modifyTodo(data);
-          setModifyStatus((pre: boolean) => !pre);
-        },
-      };
-
-  const deleteProps = !modifyStatus
-    ? {
-        onClick: (e: any) => {
-          e.preventDefault();
-          deleteTodo(todo.id);
-        },
-      }
-    : {
-        onClick: (e: any) => {
-          e.preventDefault();
-          window.location.reload();
-        },
-      };
   const isChecked = todo.isCheck;
 
   const checkedStyle = isChecked
@@ -72,6 +23,52 @@ const Todos = ({
         },
       }
     : "";
+
+  const data = {
+    id: todo.id,
+    content: ref.current,
+  };
+
+  const inputProps = !modifyStatus
+    ? { readOnly: true }
+    : {
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+          ref.current = e.target.value;
+        },
+      };
+
+  const modifyProps = !modifyStatus
+    ? {
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          isChecked
+            ? // eslint-disable-next-line no-alert
+              alert("체크된 항목은 수정이 불가능합니다 🥲")
+            : setModifyStatus((pre: boolean) => !pre);
+        },
+      }
+    : {
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          modifyTodo(data);
+          setModifyStatus((pre: boolean) => !pre);
+        },
+      };
+
+  const deleteProps = !modifyStatus
+    ? {
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          deleteTodo(todo.id);
+        },
+      }
+    : {
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          window.location.reload();
+        },
+      };
 
   return (
     <S.TodosLayout>

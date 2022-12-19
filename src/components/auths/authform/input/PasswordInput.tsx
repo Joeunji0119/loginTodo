@@ -1,8 +1,9 @@
 import { ERROR_MESSAGE } from "constants/authErrors";
+import { RegisterErrorsProps } from "constants/types";
 import React from "react";
 import * as S from "../../../common/Style";
 
-const PasswordInput = ({ register, errors }: any) => {
+const PasswordInput = ({ register, errors }: RegisterErrorsProps) => {
   return (
     <>
       {errors.password && <S.ErrorMessage> {errors.password?.message} </S.ErrorMessage>}
