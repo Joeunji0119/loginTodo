@@ -1,9 +1,9 @@
-# ✍️ TodoList 
+# ✍️ TodoList
 
 </br>
 
-
 > 학습 목적으로 백엔드 동료과 함께 TodoList 구현
+>
 > #### [배포링크](https://joeunji0119.github.io/loginTodo/)
 
 </br>
@@ -11,19 +11,13 @@
 ### 프로젝트 팀 구성
 
 > #### [FRONT END 1명](https://github.com/Joeunji0119/loginTodo)
+>
 > #### [BACK END 1명](https://github.com/sw1104/todo-server-api)
 
 </br>
 </br>
 
-
-
-
-
 #
-
-
-
 
 </br>
 
@@ -31,11 +25,9 @@
 
 ![signin 에러 2](https://user-images.githubusercontent.com/95282989/207857440-cb7b1631-3ac9-4b90-9db6-9875f804a75b.GIF) ![signup 2](https://user-images.githubusercontent.com/95282989/207857460-5e5e26d5-c92c-408f-bf96-4204aaa6ba6e.GIF)
 
-
-
 #### 1. SignIn / SignUp
 
-- [x] localStorage를 이용한 회원가입, 로그인 구현 
+- [x] localStorage를 이용한 회원가입, 로그인 구현
 - [x] 폼 입력시 유효성 검사
 - [x] 로그인, 회원가입 실패시 에러 메세지 모달 구현
 
@@ -44,8 +36,7 @@
 
 ![화면 기록 2022-12-14 오후 10 23 20](https://user-images.githubusercontent.com/95282989/207857023-c53a1f94-ebfd-49db-a594-82ee50ec571f.GIF)
 
-
-#### 2. TodoList 
+#### 2. TodoList
 
 - [x] TodoList 추가 / 수정 / 삭제 기능 구현
 - [x] 해당 todo 체크시 밑줄
@@ -54,25 +45,21 @@
 
 </br>
 
-
-
 </br>
 
 ## 🌈 사용 라이브러리
+
 </br>
 
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/>
 
 <img src="https://img.shields.io/badge/Emtion.js-96588A?style=for-the-badge&logo=React Query&logoColor=white"/> <img src="https://img.shields.io/badge/Hook Form-EC5990?style=for-the-badge&logo=React Query&logoColor=white"/> <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white"/>
 
-
 </br>
-
 
 ---
 
 </br>
-
 
 </br>
 
@@ -124,14 +111,9 @@
 │     └─ theme.ts
 ```
 
-
-
 </br>
 
-
-
 ## 회원가입 폼 구현
-
 
 ```typescript
 
@@ -165,19 +147,14 @@ export const ERROR_MESSAGE = {
   PASSWORD: "비밀번호는 영문/숫자 혼합, 8자 이상 20자 이하입니다.",
 };
 
-  
+
 ```
 
 `react-hook-form` 의 register, error를 사용해 유효성 검사와 에러 메세지를 띄우도록 했고 이는 모달로 구현했습니다. 또한 후에 에러 메세지를 쉽게 수정할 수 있도록 `constants/authErrors.ts` 파일에 모아두었습니다.
 
-
-
-
 </br>
 
-
 ## TodoList 구현
-
 
 ```typescript
 
@@ -202,10 +179,7 @@ export const GetTodoUserQuery = () => {
 
 ...
 
-  
+
 ```
 
 `useQuery` 를 사용해 header, todoList 정보를 불러왔습니다.
-
-
-

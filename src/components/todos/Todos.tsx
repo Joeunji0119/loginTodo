@@ -33,7 +33,8 @@ const Todos = ({
         onClick: (e: any) => {
           e.preventDefault();
           isChecked
-            ? alert("체크된 항목은 수정이 불가능합니다 🥲")
+            ? // eslint-disable-next-line no-alert
+              alert("체크된 항목은 수정이 불가능합니다 🥲")
             : setModifyStatus((pre: boolean) => !pre);
         },
       }

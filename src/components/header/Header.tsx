@@ -7,6 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { data } = GetTodoUserQuery();
   const toLogout = () => {
+    // eslint-disable-next-line no-alert
     alert("로그아웃 되었습니다 👋👋");
     localStorage.removeItem("access_token");
     navigate("/");
