@@ -1,4 +1,4 @@
-import React from "react";
+import { RegisterProps } from "constants/types";
 import * as Drop from "./Style";
 
 const GENDER_DATA = [
@@ -7,7 +7,7 @@ const GENDER_DATA = [
   { label: "기타", value: "기타" },
 ];
 
-const DropBox = ({ register }: any) => {
+const DropBox = ({ register }: RegisterProps) => {
   return (
     <Drop.Gender>
       <Drop.Female {...register("gender")}>

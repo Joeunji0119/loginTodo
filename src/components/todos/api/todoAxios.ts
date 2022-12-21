@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/naming-convention */
 import axios from "axios";
-import { CreateTodo } from "constants/types";
+import { CreateTodo, ModifyProps } from "constants/types";
 
 const access_token = localStorage.getItem("access_token");
 const headers = {
@@ -25,7 +25,7 @@ export const CreatTodoAxios = async (datas: CreateTodo) => {
   await axios.post(`${process.env.REACT_APP_BASE_URL}/todo/create`, datas, headers);
 };
 
-export const PatchTodoAxios = async (data: any) => {
+export const PatchTodoAxios = async (data: ModifyProps) => {
   await axios.patch(
     `${process.env.REACT_APP_BASE_URL}/todo/${data.id}`,
     { content: data.content },
