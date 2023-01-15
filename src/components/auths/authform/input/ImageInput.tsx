@@ -23,7 +23,7 @@ const ImageInput = ({ register, errors }: RegisterErrorsProps) => {
           <S.ImageShowing src={image} alt="img" />
         </S.ImageShowingContainer>
         <S.ImageSearchButtonForShow>
-          사진 선택
+          사진
           <S.ImageSearchButton
             type="file"
             accept="image/*"
