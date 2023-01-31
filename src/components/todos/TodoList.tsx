@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-named-as-default */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ModifyProps, TodoListData } from "constants/types";
@@ -14,9 +15,9 @@ import Todos from "./Todos";
 
 const TodoList = () => {
   const [todoInput, setTodoInput] = useState("");
-  const [modifyStatus, setModifyStatus] = useState(false);
 
   const queryClient = useQueryClient();
+  const { data } = GetTodoQuery();
 
   const createTodoMutation = useMutation({
     mutationFn: CreatTodoAxios,
@@ -38,8 +39,8 @@ const TodoList = () => {
     onSuccess: async () => queryClient.invalidateQueries(["getTodoListDatas"]),
   });
 
-  const modifyTodo = (data: ModifyProps) => {
-    patchTodoMutation.mutate(data);
+  const modifyTodo = (checkedId: number, inputValue: string) => {
+    patchTodoMutation.mutate({ checkedId, inputValue });
   };
 
   const deleteTodo = async (checkedId: number) => {
@@ -60,7 +61,15 @@ const TodoList = () => {
     setTodoInput(e.target.value);
   };
 
-  const { data } = GetTodoQuery();
+  const updateValue = () => {
+    // console.log(datas);
+    // data?.data.todoList.map(({ id, content, isCheck, createAt, updateAt }: TodoListData) => {
+    // if (id === checkedId) {
+    //   content = inputValue;
+    //   return { id, content, isCheck, createAt, updateAt };
+    // }
+    // });
+  };
 
   return (
     <S.BackgroundColor>
@@ -83,10 +92,9 @@ const TodoList = () => {
                     key={todo?.id}
                     todo={todo}
                     deleteTodo={deleteTodo}
-                    modifyStatus={modifyStatus}
-                    setModifyStatus={setModifyStatus}
                     handleCheckBox={handleCheckBox}
                     modifyTodo={modifyTodo}
+                    updateValue={updateValue}
                   />
                 );
               })}

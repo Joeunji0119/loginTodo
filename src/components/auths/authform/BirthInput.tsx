@@ -1,5 +1,5 @@
 import { RegisterProps } from "constants/types";
-import * as S from "../../../common/Style";
+import * as S from "../../common/Style";
 
 const BirthInput = ({ register }: RegisterProps) => {
   return (

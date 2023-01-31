@@ -1,20 +1,15 @@
 import { TodosProps } from "constants/types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as S from "../common/Style";
 
-const Todos = ({
-  todo,
-  deleteTodo,
-  modifyStatus,
-  setModifyStatus,
-  handleCheckBox,
-  modifyTodo,
-}: TodosProps) => {
+const Todos = ({ todo, deleteTodo, handleCheckBox, modifyTodo, updateValue }: TodosProps) => {
+  const [modifyStatus, setModifyStatus] = useState(false);
   const modifyButtonText = modifyStatus ? "제출" : "수정";
   const deleteButtonText = modifyStatus ? "취소" : "삭제";
   const ref = useRef<HTMLInputElement | string>("");
 
   const isChecked = todo.isCheck;
+  // console.log(ref);
 
   const checkedStyle = isChecked
     ? {
@@ -24,18 +19,19 @@ const Todos = ({
       }
     : "";
 
-  const data = {
-    id: todo.id,
-    content: ref.current,
-  };
-
   const inputProps = !modifyStatus
     ? { readOnly: true }
     : {
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           ref.current = e.target.value;
+          // updateValue(data);
         },
       };
+
+  // const data = {
+  //   id: todo.id,
+  //   content: ref.current,
+  // };
 
   const modifyProps = !modifyStatus
     ? {
@@ -51,7 +47,8 @@ const Todos = ({
     : {
         onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
-          modifyTodo(data);
+          let inputValue = ref.current;
+          // modifyTodo(todo.id, inputValue);
           setModifyStatus((pre: boolean) => !pre);
         },
       };

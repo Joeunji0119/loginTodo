@@ -2,6 +2,14 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
 
+export const instance = axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_URL}`,
+});
+
+instance.interceptors.request.use((config) => {
+  return config;
+});
+
 const formData = new FormData();
 
 export const AuthSignUpAxios = async (data: FieldValues) => {
@@ -12,14 +20,12 @@ export const AuthSignUpAxios = async (data: FieldValues) => {
   formData.append("birth", data.birth);
   formData.append("file", data.file[0]);
 
-  const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, formData);
-  return res;
+  return axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, formData);
 };
 
 export const AuthSignInAxios = (data: FieldValues) => {
   formData.append("email", data.email);
   formData.append("password", data.password);
 
-  const res = axios.post(`${process.env.REACT_APP_BASE_URL}/user/signin`, data);
-  return res;
+  return axios.post(`${process.env.REACT_APP_BASE_URL}/user/signin`, data);
 };
