@@ -48,7 +48,7 @@ const Todos = ({ todo, deleteTodo, handleCheckBox, modifyTodo, updateValue }: To
         onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           let inputValue = ref.current;
-          modifyTodo(todo.id, inputValue);
+          // modifyTodo(todo.id, inputValue);
           setModifyStatus((pre: boolean) => !pre);
         },
       };

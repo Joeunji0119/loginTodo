@@ -35,12 +35,13 @@ export const CreatTodoAxios = async (datas: CreateTodo) => {
 };
 
 export const PatchTodoAxios = async (data: ModifyProps) => {
-  console.log(11111, data);
-  await axios.patch(
-    `${process.env.REACT_APP_BASE_URL}/todo/${data.id}`,
-    { content: data.content },
-    headers
-  );
+  // console.log(11111, data);
+  // await axios
+  //   .patch
+  // `${process.env.REACT_APP_BASE_URL}/todo/${data.id}`,
+  // { content: data.content },
+  // headers
+  // ();
 };
 
 export const DeleteTodoAxios = async (targetId: number) => {
