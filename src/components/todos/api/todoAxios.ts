@@ -6,19 +6,28 @@ import { CreateTodo, ModifyProps } from "constants/types";
 const access_token = localStorage.getItem("access_token");
 const headers = {
   headers: {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${access_token}`,
   },
 };
 
+export const instance = axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_URL}`,
+  headers: {
+    Authorization: `Bearer ${access_token}`,
+  },
+});
+
+instance.interceptors.request.use((config) => {
+  return config;
+});
+
 export const getDataAxios = async () => {
-  const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/todo`, headers);
-  return res;
+  return instance.get("/todo");
 };
 
 export const getUserDataAxios = async () => {
-  const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user`, headers);
-  return res;
+  // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user`, headers);
+  return instance.get("/user");
 };
 
 export const CreatTodoAxios = async (datas: CreateTodo) => {
@@ -26,6 +35,7 @@ export const CreatTodoAxios = async (datas: CreateTodo) => {
 };
 
 export const PatchTodoAxios = async (data: ModifyProps) => {
+  console.log(11111, data);
   await axios.patch(
     `${process.env.REACT_APP_BASE_URL}/todo/${data.id}`,
     { content: data.content },

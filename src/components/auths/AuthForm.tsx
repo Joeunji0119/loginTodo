@@ -7,19 +7,21 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import * as S from "../common/Style";
 import { AuthSignInAxios, AuthSignUpAxios } from "./api/authAxios";
-import DropBox from "./authform/input/dropBox/DropBox";
+import {
+  BirthInput,
+  EmailInput,
+  ImageInput,
+  NameInput,
+  PasswordInput,
+  DropBox,
+} from "./authform/index";
 import useAuth from "./hooks/useAuth";
 import Errormodal from "./modal/Errormodal";
-import BirthInput from "./authform/input/BirthInput";
-import EmailInput from "./authform/input/EmailInput";
-import ImageInput from "./authform/input/ImageInput";
-import NameInput from "./authform/input/NameInput";
-import PasswordInput from "./authform/input/PasswordInput";
 
 const Authform = () => {
   const [errorModal, setErrorModal] = useState(false);
   const [serverErrorMessage, setServerErrorMessage] = useState<number | string>();
-  const { PageStatus, toogle, setToogle, navi, statusButton } = useAuth();
+  const { PageStatus, toogle, setToogle, handleToogle, statusButton } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -75,7 +77,7 @@ const Authform = () => {
         <PasswordInput register={register} errors={errors} />
 
         <S.SubmitButton>{PageStatus}</S.SubmitButton>
-        <S.GotoLoginBtn {...navi}>{statusButton}</S.GotoLoginBtn>
+        <S.GotoLoginBtn onClick={handleToogle}>{statusButton}</S.GotoLoginBtn>
       </S.FormContainer>
       {errorModal && (
         <Errormodal serverErrorMessage={serverErrorMessage} setErrorModal={setErrorModal} />

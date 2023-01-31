@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { ERROR_MESSAGE } from "constants/authErrors";
 import { RegisterErrorsProps } from "constants/types";
-import * as S from "../../../common/Style";
+import * as S from "../../common/Style";
 
 const EmailInput = ({ register, errors }: RegisterErrorsProps) => {
   return (

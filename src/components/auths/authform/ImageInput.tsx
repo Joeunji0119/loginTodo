@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ERROR_MESSAGE } from "constants/authErrors";
 import { RegisterErrorsProps } from "constants/types";
-import * as S from "../../../common/Style";
+import * as S from "../../common/Style";
 
 const ImageInput = ({ register, errors }: RegisterErrorsProps) => {
   const [image, setImage] = useState("");

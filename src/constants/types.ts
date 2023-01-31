@@ -22,17 +22,17 @@ export interface CreateTodo {
 }
 
 export interface ModifyProps {
-  id: number;
-  content: string | HTMLInputElement;
+  checkedId: number;
+  inputValue: string | HTMLInputElement;
 }
 
 export interface TodosProps {
   todo: TodoListData;
   handleCheckBox: (checkedId: number) => void;
   deleteTodo: (checkedId: number) => Promise<void>;
-  modifyStatus: boolean;
-  setModifyStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  modifyTodo: (data: ModifyProps) => void;
+  // modifyTodo: (data: ModifyProps) => void;
+  modifyTodo: (checkedId: number, inputValue: string) => void;
+  updateValue: (e: React.ChangeEvent<HTMLInputElement>, checkedId: number) => void;
 }
 
 export type RegisterErrorsProps = {
